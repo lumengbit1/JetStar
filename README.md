@@ -1,39 +1,39 @@
-# BM Program
+# JetStar Program
 
 ## Getting started
 
 #### Requirement
 
-This app uses node v15.4.0, or npm v15.4.0, and yarn v1.16.0
+This app uses node v15.4.0, or npm v15.4.0
 
 #### Project setup
 
-Install project dependencies you can use yarn:
+Install project dependencies you can use npm:
 
 ```
-yarn install
+npm install
 ```
 
 #### Run development server
 
 ```
-yarn start
+npm start
 ```
 
 #### Run linters
 
 ```
-yarn run lint
+npm run lint
 ```
 
 #### Run tests
 
 ```
-yarn test
+npm test
 ```
 
 #### Create production build
 
 ```
-yarn run build
+npm run build
 ```
