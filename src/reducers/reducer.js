@@ -34,7 +34,18 @@ const reducer = handleActions(
           draft.coordinate = { x, y };
           draft.rotateDeg = INITIAL_ROTATE_DEG[f];
           draft.isPlaced = true;
-          draft.commands = [...state.commands, `${CommandTypes.PLACE} ${x},${y},${f}`];
+          draft.commands = [...state.commands, `${CommandTypes.PLACE} (${x}, ${y}, '${f}')`];
+          return draft;
+        }
+
+        case CommandTypes.MOVE: {
+          if (!state.isPlaced || state.coordinate === null) return state;
+
+          draft.coordinate = {
+            x: state.coordinate.x + state.facing.x,
+            y: state.coordinate.y + state.facing.y,
+          };
+          draft.commands = [...state.commands, `${CommandTypes.MOVE}()`];
           return draft;
         }
 
