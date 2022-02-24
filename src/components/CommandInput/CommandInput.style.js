@@ -13,3 +13,18 @@ export const Input = styled.input`
   height: 1.875rem;
   font-size: 1.5rem;
 `;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+`;
+
+export const Button = styled.button`
+  width: 5rem;
+  height: 1.875rem;
+
+  :first-child {
+    margin-right: 1rem;
+  }
+`;
