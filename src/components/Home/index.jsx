@@ -2,7 +2,7 @@ import React from 'react';
 import CommandInput from '../CommandInput';
 import { Root } from './Home.style';
 
-const HomePage = ()=>(
+const HomePage = () => (
   <Root>
     <CommandInput />
   </Root>
