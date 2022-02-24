@@ -8,6 +8,6 @@ const HomePage = () => (
     <CommandInput />
     <CommandList />
   </Root>
-)
+);
 
 export default HomePage;

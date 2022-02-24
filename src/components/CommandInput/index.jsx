@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { useImmer } from "use-immer";
+import { useImmer } from 'use-immer';
 import { add_command, reset } from '../../reducers/actions';
 import { Root, Input, ButtonContainer, Button } from './CommandInput.style';
 
@@ -24,7 +24,7 @@ const CommandInput = () => {
 
       updateCommand('');
     },
-    [command]
+    [command],
   );
 
   const handleReset = useCallback(
@@ -35,7 +35,7 @@ const CommandInput = () => {
 
       updateCommand('');
     },
-    [command]
+    [command],
   );
 
   return (
@@ -55,7 +55,7 @@ const CommandInput = () => {
         </Button>
       </ButtonContainer>
     </Root>
-  )
+  );
 };
 
 export default CommandInput;

@@ -10,19 +10,19 @@ const initialState = {
   facing: { x: 0, y: 1 },
   rotateDeg: 0,
   commands: [],
-  errorMessage: ''
+  errorMessage: '',
 };
 
-const getCommandValues = command => command.split(/[\s,]+/);
+const getCommandValues = (command) => command.split(/[\s,]+/);
 
 const reducer = handleActions(
   {
-    [add_command]: (state, action) => produce(state, (draft) =>{
+    [add_command]: (state, action) => produce(state, (draft) => {
       const commandValues = getCommandValues(action.payload);
 
       const command = commandValues[0];
- 
-      switch(command) {
+
+      switch (command) {
         case CommandTypes.PLACE: {
           const x = parseInt(commandValues[1], 10);
 
@@ -35,11 +35,16 @@ const reducer = handleActions(
           draft.rotateDeg = INITIAL_ROTATE_DEG[f];
           draft.isPlaced = true;
           draft.commands = [...state.commands, `${CommandTypes.PLACE} ${x},${y},${f}`];
+          return draft;
         }
-      };
+
+        default: {
+          return state;
+        }
+      }
     }),
 
-    [reset]: (state, action) => produce(state, (draft) =>initialState),
+    [reset]: (state) => produce(state, () => initialState),
   },
   initialState,
 );

@@ -16,7 +16,7 @@ const CommandList = () => {
         </Command>
       ))}
     </Root>
-  )
+  );
 };
 
 export default CommandList;
