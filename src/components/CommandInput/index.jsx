@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useImmer } from "use-immer";
 import { add_command } from '../../reducers/actions';
 import { Root, Input, ButtonContainer, Button } from './CommandInput.style';
@@ -7,8 +7,6 @@ import { Root, Input, ButtonContainer, Button } from './CommandInput.style';
 const CommandInput = () => {
   const [command, updateCommand] = useImmer('');
   const dispatch = useDispatch();
-
-  const value = useSelector((state) => state.reducer);
 
   const onChange = useCallback((e) => {
     e.preventDefault();

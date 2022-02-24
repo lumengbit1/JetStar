@@ -6,6 +6,9 @@ export const Root = styled.div`
   background-color: black;
   width: 32rem;
   height: 32rem;
-  color: yellow;
   padding: 1rem;
+`;
+
+export const Command = styled.div`
+  color: yellow;
 `;
