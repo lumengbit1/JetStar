@@ -16,11 +16,11 @@ const getCommandValues = command => command.split(/[\s,]+/);
 const reducer = handleActions(
   {
     [add_command]: (state, action) => {
-      console.log(action.payload)
+
       const commandValues = getCommandValues(action.payload);
 
       const command = commandValues[0];
-
+ 
       return command;
     },
   },

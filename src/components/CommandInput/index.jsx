@@ -14,6 +14,19 @@ const CommandInput = () => {
     updateCommand(e.target.value.toUpperCase());
   }, []);
 
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+
+      if (command.length === 0) return;
+
+      dispatch(add_command(command));
+
+      updateCommand('');
+    },
+    [command]
+  );
+
   return (
     <Root>
       <Input
@@ -22,7 +35,7 @@ const CommandInput = () => {
         placeholder="Tell the robot what to do ..."
       />
       <ButtonContainer>
-        <Button onClick={() => dispatch(add_command(command))}>
+        <Button onClick={handleSubmit}>
           Run
         </Button>
 
