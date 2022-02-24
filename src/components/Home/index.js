@@ -1,9 +1,11 @@
 import React from 'react';
+import CommandInput from '../CommandInput';
+import { Root } from './Home.style';
 
 const HomePage = ()=>(
-  <div>
-    test
-  </div>
+  <Root>
+    <CommandInput />
+  </Root>
 )
 
 export default HomePage;
