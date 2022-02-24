@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 import { produce } from 'immer';
-import { add_command } from './actions';
+import { add_command, reset } from './actions';
 import { CommandTypes } from './constants';
 import { ORIENTATION, INITIAL_ROTATE_DEG } from '../configs/configs';
 
@@ -38,6 +38,8 @@ const reducer = handleActions(
         }
       };
     }),
+
+    [reset]: (state, action) => produce(state, (draft) =>initialState),
   },
   initialState,
 );

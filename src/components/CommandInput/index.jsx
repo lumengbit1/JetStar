@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { useImmer } from "use-immer";
-import { add_command } from '../../reducers/actions';
+import { add_command, reset } from '../../reducers/actions';
 import { Root, Input, ButtonContainer, Button } from './CommandInput.style';
 
 const CommandInput = () => {
@@ -27,6 +27,17 @@ const CommandInput = () => {
     [command]
   );
 
+  const handleReset = useCallback(
+    (e) => {
+      e.preventDefault();
+
+      dispatch(reset());
+
+      updateCommand('');
+    },
+    [command]
+  );
+
   return (
     <Root>
       <Input
@@ -39,7 +50,7 @@ const CommandInput = () => {
           Run
         </Button>
 
-        <Button>
+        <Button onClick={handleReset}>
           Reset
         </Button>
       </ButtonContainer>

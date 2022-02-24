@@ -6,12 +6,12 @@ import { Root, Command } from './CommandList.style';
 const CommandList = () => {
   const commands = useSelector((state) => state.reducer.commands);
 
-  if (commands.length === 0) return;
+  if (commands.length === 0) return null;
 
   return (
     <Root>
-      {map(commands, (command) => (
-        <Command>
+      {map(commands, (command, index) => (
+        <Command key={`${command} + ${index}`}>
           {command}
         </Command>
       ))}
