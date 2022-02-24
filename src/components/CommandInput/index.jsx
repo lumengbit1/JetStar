@@ -47,6 +47,6 @@ const CommandInput = () => {
       </ButtonContainer>
     </Root>
   )
-}
+};
 
 export default CommandInput;
