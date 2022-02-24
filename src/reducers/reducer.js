@@ -1,5 +1,6 @@
 import { handleActions } from 'redux-actions';
 import { produce } from 'immer';
+import { keys, find } from 'lodash';
 import { add_command, reset } from './actions';
 import { CommandTypes } from './constants';
 import { ORIENTATION, INITIAL_ROTATE_DEG } from '../configs/configs';
@@ -14,6 +15,16 @@ const initialState = {
 };
 
 const getCommandValues = (command) => command.split(/[\s,]+/);
+
+const getFacingDirection = ({ x, y }) => {
+  const key = keys(ORIENTATION);
+
+  return find(key, k => {
+    const value = ORIENTATION[k];
+
+    return value.x === x && value.y === y;
+  });
+};
 
 const reducer = handleActions(
   {
@@ -45,7 +56,7 @@ const reducer = handleActions(
             x: state.coordinate.x + state.facing.x,
             y: state.coordinate.y + state.facing.y,
           };
-          draft.commands = [...state.commands, `${CommandTypes.MOVE}()`];
+          draft.commands = [...state.commands, `${CommandTypes.MOVE}( )`];
           return draft;
         }
 
@@ -57,7 +68,7 @@ const reducer = handleActions(
             y: state.facing.x,
           };
           draft.rotateDeg = state.rotateDeg - 90;
-          draft.commands = [...state.commands, `${CommandTypes.LEFT}()`];
+          draft.commands = [...state.commands, `${CommandTypes.LEFT}( )`];
           return draft;
         }
 
@@ -69,7 +80,19 @@ const reducer = handleActions(
             y: state.facing.x !== 0 ? -state.facing.x : 0,
           };
           draft.rotateDeg = state.rotateDeg + 90;
-          draft.commands = [...state.commands, `${CommandTypes.RIGHT}()`];
+          draft.commands = [...state.commands, `${CommandTypes.RIGHT}( )`];
+          return draft;
+        }
+
+        case CommandTypes.REPORT: {
+          if (!state.isPlaced || state.coordinate === null) return state;
+
+          const facingDirection = getFacingDirection(state.facing);
+
+          draft.commands = [
+            ...state.commands,
+            `REPORT( ) => OUTPUT: ${state.coordinate.x}, ${state.coordinate.y}, ${facingDirection}`,
+          ]
           return draft;
         }
 
