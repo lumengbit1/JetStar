@@ -11,7 +11,6 @@ export const Root = styled.div`
 export const Input = styled.input`
   width: 30%;
   height: 1.875rem;
-  font-size: 1.5rem;
 `;
 
 export const ButtonContainer = styled.div`
