@@ -49,6 +49,18 @@ const reducer = handleActions(
           return draft;
         }
 
+        case CommandTypes.LEFT: {
+          if (!state.isPlaced) return state;
+
+          draft.facing = {
+            x: state.facing.y !== 0 ? -state.facing.y : 0,
+            y: state.facing.x,
+          };
+          draft.rotateDeg = state.rotateDeg - 90;
+          draft.commands = [...state.commands, `${CommandTypes.LEFT}()`];
+          return draft;
+        }
+
         default: {
           return state;
         }
