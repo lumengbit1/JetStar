@@ -81,7 +81,7 @@ const reducer = handleActions(
           draft.commands = [
             ...state.commands,
             `REPORT( ) => OUTPUT: ${state.coordinate.x}, ${state.coordinate.y}, ${facingDirection}`,
-          ]
+          ];
           return draft;
         }
 
