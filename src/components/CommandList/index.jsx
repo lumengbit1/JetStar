@@ -11,7 +11,10 @@ const CommandList = () => {
   return (
     <Root>
       {map(commands, (command, index) => (
-        <Command key={`${command} + ${index}`}>
+        <Command
+          key={`${command} + ${index}`}
+          aria-label="command-list"
+        >
           {command}
         </Command>
       ))}

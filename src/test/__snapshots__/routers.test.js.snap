@@ -8,6 +8,7 @@ exports[`Route Test Route Test 1`] = `
     className="sc-bdfBQB gZoOcS"
   >
     <input
+      aria-label="command-input"
       className="sc-gsTEea cMajfa"
       onChange={[Function]}
       placeholder="Tell the robot what to do ..."

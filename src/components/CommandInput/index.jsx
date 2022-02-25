@@ -44,6 +44,7 @@ const CommandInput = () => {
     <Root>
       <Input
         value={command}
+        aria-label="command-input"
         onChange={onChange}
         placeholder="Tell the robot what to do ..."
       />
