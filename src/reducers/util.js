@@ -32,13 +32,6 @@ export const getErrorMessage = (inputedCommand, isPlaced, coordinate, facing) =>
       return errors;
     }
 
-    // Error for robot not being replaced
-    if (!isPlaced) {
-      errors = ERRORS.notInitialized;
-
-      return errors;
-    }
-
     if (command === 'PLACE') {
       // Error for invalid initial command
       if (commandValues.length < 4) {
@@ -69,17 +62,24 @@ export const getErrorMessage = (inputedCommand, isPlaced, coordinate, facing) =>
 
         return errors;
       }
-    }
-
-    if (command === 'MOVE' && coordinate !== null) {
-      const nextX = coordinate.x + facing.x;
-
-      const nextY = coordinate.y + facing.y;
-
-      if (!isRobotOnTable(nextX, nextY)) {
-        errors = ERRORS.wrongMovingDirection;
+    } else {
+      // Error for robot not being replaced
+      if (!isPlaced) {
+        errors = ERRORS.notInitialized;
 
         return errors;
+      }
+
+      if (command === 'MOVE' && coordinate !== null) {
+        const nextX = coordinate.x + facing.x;
+
+        const nextY = coordinate.y + facing.y;
+
+        if (!isRobotOnTable(nextX, nextY)) {
+          errors = ERRORS.wrongMovingDirection;
+
+          return errors;
+        }
       }
     }
   }
