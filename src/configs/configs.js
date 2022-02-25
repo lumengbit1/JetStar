@@ -11,3 +11,9 @@ export const INITIAL_ROTATE_DEG = {
   SOUTH: 180,
   WEST: 270,
 };
+
+export const COMMANDS = ['PLACE', 'MOVE', 'LEFT', 'RIGHT', 'REPORT'];
+
+export const ERRORS = {
+  invalidCommand: `Invalid command. Please pick commands from ${COMMANDS.join(' | ')}.`,
+};

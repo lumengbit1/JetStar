@@ -1,4 +1,5 @@
-import { ORIENTATION } from '../configs/configs';
+import { includes } from 'lodash';
+import { ORIENTATION, COMMANDS, ERRORS } from '../configs/configs';
 
 export const getCommandValues = (command) => command.split(/[\s,]+/);
 
@@ -17,7 +18,16 @@ export const getErrorMessage = (inputedCommand) => {
 
   const command = commandValues[0];
 
-  const errors = '';
+  let errors = '';
+
+  if (command) {
+    // Error for invalid command
+    if (!includes(COMMANDS, command)) {
+      errors = ERRORS.invalidCommand;
+
+      return errors;
+    }
+  }
 
   return errors;
 };
