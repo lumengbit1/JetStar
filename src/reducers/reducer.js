@@ -17,7 +17,7 @@ const initialState = {
 const reducer = handleActions(
   {
     [add_command]: (state, action) => produce(state, (draft) => {
-      const commandValues = getCommandValues(action.payload);
+      const commandValues = getCommandValues(action.payload.command);
 
       const command = commandValues[0];
 

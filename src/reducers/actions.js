@@ -2,7 +2,9 @@ import { createAction } from 'redux-actions';
 import { Action } from './constants';
 import { getErrorMessage } from './util';
 
-export const add_command = createAction(Action.ADD_COMMAND);
+export const add_command = createAction(Action.ADD_COMMAND, (params) => ({
+  command: params,
+}));
 
 export const reset = createAction(Action.RESET);
 
