@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { useImmer } from 'use-immer';
-import { reset, handleCommand } from '../../reducers/actions';
+import { reset, handleCommand, clearErrorMessage } from '../../reducers/actions';
 import { Root, Input, ButtonContainer, Button } from './CommandInput.style';
 
 const CommandInput = () => {
@@ -19,6 +19,8 @@ const CommandInput = () => {
       e.preventDefault();
 
       if (command.length === 0) return;
+
+      dispatch(clearErrorMessage());
 
       dispatch(handleCommand(command));
 

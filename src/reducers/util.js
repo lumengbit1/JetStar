@@ -1,4 +1,4 @@
-import { includes } from 'lodash';
+import { includes, keys, find } from 'lodash';
 import { ORIENTATION, COMMANDS, ERRORS } from '../configs/configs';
 
 export const getCommandValues = (command) => command.split(/[\s,]+/);

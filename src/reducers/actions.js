@@ -10,6 +10,8 @@ export const showError = createAction(Action.ADD_ERROR, (params) => ({
   message: params,
 }));
 
+export const clearErrorMessage = createAction(Action.CLEAR_ERROR_MESSAGE);
+
 export const handleCommand = (command) => (dispatch) => {
   const Error = getErrorMessage(command);
 
