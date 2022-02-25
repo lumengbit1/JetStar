@@ -11,3 +11,13 @@ export const getFacingDirection = ({ x, y }) => {
     return value.x === x && value.y === y;
   });
 };
+
+export const getErrorMessage = (inputedCommand) => {
+  const commandValues = getCommandValues(inputedCommand);
+
+  const command = commandValues[0];
+
+  const errors = '';
+
+  return errors;
+};
