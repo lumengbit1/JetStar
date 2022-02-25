@@ -49,11 +49,17 @@ const CommandInput = () => {
         placeholder="Tell the robot what to do ..."
       />
       <ButtonContainer>
-        <Button onClick={handleSubmit}>
+        <Button
+          onClick={handleSubmit}
+          aria-label="run-button"
+        >
           Run
         </Button>
 
-        <Button onClick={handleReset}>
+        <Button
+          onClick={handleReset}
+          aria-label="reset-button"
+        >
           Reset
         </Button>
       </ButtonContainer>
