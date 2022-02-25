@@ -1,3 +1,3 @@
 export default {
-  BASE_API_DOMAIN: 'http://localhost:3000/response',
+  GRID: { X: 5, Y: 5 },
 };
