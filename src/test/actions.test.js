@@ -1,24 +1,23 @@
 import Enzyme from 'enzyme';
+import { createStore, applyMiddleware } from 'redux';
 import Adapter from 'enzyme-adapter-react-16';
-import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
+import thunk from 'redux-thunk';
+import reducer from '../reducers';
 import { Action } from '../reducers/constants';
 import * as actions from '../reducers/actions';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-// const initialState = {
-//   isPlaced: false,
-//   coordinate: null,
-//   facing: { x: 0, y: 1 },
-//   rotateDeg: 0,
-//   commands: [],
-//   errorMessage: '',
-// };
+const initialState = {
+  isPlaced: false,
+  coordinate: null,
+  facing: { x: 0, y: 1 },
+  rotateDeg: 0,
+  commands: [],
+  errorMessage: '',
+};
 
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
-// const store = mockStore(initialState);
+const store = createStore(reducer, applyMiddleware(thunk));
 
 describe('actions testing', () => {
   it('1.add_command function should be triggered when invoked', () => {
@@ -59,5 +58,32 @@ describe('actions testing', () => {
     };
 
     expect(actions.showError(payload)).toEqual(expectedAction);
+  });
+
+  it('5.handleCommand function should be triggered when invoked', () => {
+    const command = 'PLACE,0,0,NORTH';
+    const expectedAction = {
+      type: Action.ADD_COMMAND,
+      payload: {
+        command: 'PLACE,0,0,NORTH',
+      },
+    };
+
+    store.dispatch(actions.handleCommand(command));
+    expect(actions.add_command(command)).toEqual(expectedAction);
+  });
+
+  it('6.handleCommand function with error command', () => {
+    const command = 'TEST,0,0,NORTH';
+    const errorMessage = 'error';
+    const expectedAction = {
+      type: Action.ADD_ERROR,
+      payload: {
+        message: 'error',
+      },
+    };
+
+    store.dispatch(actions.handleCommand(command));
+    expect(actions.showError(errorMessage)).toEqual(expectedAction);
   });
 });
