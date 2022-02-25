@@ -7,6 +7,7 @@ export const Root = styled.div`
   width: 32rem;
   height: 32rem;
   padding: 1rem;
+  overflow: auto;
 `;
 
 export const Command = styled.div`
