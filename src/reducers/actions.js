@@ -13,9 +13,9 @@ export const showError = createAction(Action.ADD_ERROR, (params) => ({
 export const clearErrorMessage = createAction(Action.CLEAR_ERROR_MESSAGE);
 
 export const handleCommand = (command) => (dispatch, getState) => {
-  const {reducer: { isPlaced }} = getState();
+  const { reducer: { isPlaced, coordinate, facing } } = getState();
 
-  const Error = getErrorMessage(command, isPlaced);
+  const Error = getErrorMessage(command, isPlaced, coordinate, facing);
 
   if (Error.length) {
     dispatch(showError(Error));

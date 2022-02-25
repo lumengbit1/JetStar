@@ -1,5 +1,5 @@
 import { includes, keys, find, isInteger } from 'lodash';
-import { ORIENTATION, COMMANDS, ERRORS, FACING_DIRECTIONS } from '../configs/configs';
+import { ORIENTATION, COMMANDS, ERRORS, FACING_DIRECTIONS, TABLE_DIMENSION } from '../configs/configs';
 
 export const getCommandValues = (command) => command.split(/[\s,]+/);
 
@@ -17,7 +17,7 @@ export const isValidCoordinate = (x) => isInteger(x) && Math.sign(x) >= 0;
 
 export const isRobotOnTable = (x, y) => x > -1 && x < TABLE_DIMENSION.x && y > -1 && y < TABLE_DIMENSION.y;
 
-export const getErrorMessage = (inputedCommand, isPlaced) => {
+export const getErrorMessage = (inputedCommand, isPlaced, coordinate, facing) => {
   const commandValues = getCommandValues(inputedCommand);
 
   const command = commandValues[0];
@@ -45,30 +45,29 @@ export const getErrorMessage = (inputedCommand, isPlaced) => {
         errors = ERRORS.invalidInitialCommand;
 
         return errors;
-      } else {
-        const x = parseInt(commandValues[1], 10);
+      }
+      const x = parseInt(commandValues[1], 10);
 
-        const y = parseInt(commandValues[2], 10);
+      const y = parseInt(commandValues[2], 10);
 
-        const f = commandValues[3];
+      const f = commandValues[3];
 
-        if (!isValidCoordinate(x) || !isValidCoordinate(y)) {
-          errors = ERRORS.wrongCoordinate;
+      if (!isValidCoordinate(x) || !isValidCoordinate(y)) {
+        errors = ERRORS.wrongCoordinate;
 
-          return errors;
-        }
+        return errors;
+      }
 
-        if (!includes(FACING_DIRECTIONS, f)) {
-          errors = ERRORS.wrongDirection;
+      if (!includes(FACING_DIRECTIONS, f)) {
+        errors = ERRORS.wrongDirection;
 
-          return errors;
-        }
+        return errors;
+      }
 
-        if (!isRobotOnTable(x, y)) {
-          errors = ERRORS.fallOff;
+      if (!isRobotOnTable(x, y)) {
+        errors = ERRORS.fallOff;
 
-          return errors;
-        }
+        return errors;
       }
     }
 
