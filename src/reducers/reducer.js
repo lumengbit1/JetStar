@@ -1,7 +1,7 @@
 import { handleActions } from 'redux-actions';
 import { produce } from 'immer';
 import { keys, find } from 'lodash';
-import { add_command, reset } from './actions';
+import { add_command, reset, showError } from './actions';
 import { CommandTypes } from './constants';
 import { getCommandValues, getFacingDirection } from './util';
 import { ORIENTATION, INITIAL_ROTATE_DEG } from '../configs/configs';
@@ -92,6 +92,11 @@ const reducer = handleActions(
     }),
 
     [reset]: (state) => produce(state, () => initialState),
+
+    [showError]: (state, action) => produce(state, (draft) => {
+      draft.errorMessage = action.payload.message;
+      return draft;
+    }),
   },
   initialState,
 );
