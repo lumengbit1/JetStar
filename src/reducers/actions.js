@@ -4,3 +4,5 @@ import { Action } from './constants';
 export const add_command = createAction(Action.ADD_COMMAND);
 
 export const reset = createAction(Action.RESET);
+
+export const showError = (message) => createAction(Action.ADD_ERROR, { message });
