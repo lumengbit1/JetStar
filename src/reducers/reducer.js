@@ -3,6 +3,7 @@ import { produce } from 'immer';
 import { keys, find } from 'lodash';
 import { add_command, reset } from './actions';
 import { CommandTypes } from './constants';
+import { getCommandValues, getFacingDirection } from './util';
 import { ORIENTATION, INITIAL_ROTATE_DEG } from '../configs/configs';
 
 const initialState = {
@@ -12,18 +13,6 @@ const initialState = {
   rotateDeg: 0,
   commands: [],
   errorMessage: '',
-};
-
-const getCommandValues = (command) => command.split(/[\s,]+/);
-
-const getFacingDirection = ({ x, y }) => {
-  const key = keys(ORIENTATION);
-
-  return find(key, k => {
-    const value = ORIENTATION[k];
-
-    return value.x === x && value.y === y;
-  });
 };
 
 const reducer = handleActions(
