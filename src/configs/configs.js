@@ -16,4 +16,5 @@ export const COMMANDS = ['PLACE', 'MOVE', 'LEFT', 'RIGHT', 'REPORT'];
 
 export const ERRORS = {
   invalidCommand: `Invalid command. Please pick commands from ${COMMANDS.join(' | ')}.`,
+  notInitialized: `The robot is not placed on the table yet. Place it first with 'PLACE X,Y,F'`,
 };

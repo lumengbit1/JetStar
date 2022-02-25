@@ -13,7 +13,7 @@ export const getFacingDirection = ({ x, y }) => {
   });
 };
 
-export const getErrorMessage = (inputedCommand) => {
+export const getErrorMessage = (inputedCommand, isPlaced) => {
   const commandValues = getCommandValues(inputedCommand);
 
   const command = commandValues[0];
@@ -24,6 +24,13 @@ export const getErrorMessage = (inputedCommand) => {
     // Error for invalid command
     if (!includes(COMMANDS, command)) {
       errors = ERRORS.invalidCommand;
+
+      return errors;
+    }
+
+    // Error for robot not being replaced
+    if (!isPlaced) {
+      errors = ERRORS.notInitialized;
 
       return errors;
     }

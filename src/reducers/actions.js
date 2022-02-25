@@ -12,8 +12,10 @@ export const showError = createAction(Action.ADD_ERROR, (params) => ({
 
 export const clearErrorMessage = createAction(Action.CLEAR_ERROR_MESSAGE);
 
-export const handleCommand = (command) => (dispatch) => {
-  const Error = getErrorMessage(command);
+export const handleCommand = (command) => (dispatch, getState) => {
+  const {reducer: { isPlaced }} = getState();
+
+  const Error = getErrorMessage(command, isPlaced);
 
   if (Error.length) {
     dispatch(showError(Error));
