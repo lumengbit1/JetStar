@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorMessage Test Cases 1: Component shoule be rendered correctly 1`] = `
+.c0 {
+  color: red;
+}
+
+<div>
+  <div
+    class="c0"
+  >
+    error message
+  </div>
+</div>
+`;
