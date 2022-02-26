@@ -55,11 +55,7 @@ describe('CommandInput Test Cases', () => {
     fireEvent.change(input, {target: {value: 'PLACE,0,0,NORTH'}});
     fireEvent.click(run);
 
-    waitFor(() => {
-      expect(realStore.getState().reducer.commands).toEqual(["PLACE (0, 0, 'NORTH')"]);
-    }, 500)
-
-    // expect(realStore.getState().reducer.commands).toEqual(["PLACE (0, 0, 'NORTH')"]);
+    expect(realStore.getState().reducer.commands).toEqual(["PLACE (0, 0, 'NORTH')"]);
   });
 
   it('4: state shoule be cleaned when has reset button is clicked', async () => {

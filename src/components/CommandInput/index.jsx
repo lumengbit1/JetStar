@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { useImmer } from 'use-immer';
-import { debounce } from 'lodash';
 import { reset, handleCommand, clearErrorMessage } from '../../reducers/actions';
 import { Root, Input, ButtonContainer, Button } from './CommandInput.style';
 
@@ -14,7 +13,7 @@ const CommandInput = () => {
   }, []);
 
   const handleSubmit = useCallback(
-    debounce(() => {
+    () => {
       if (command.length === 0) return;
 
       dispatch(clearErrorMessage());
@@ -22,16 +21,16 @@ const CommandInput = () => {
       dispatch(handleCommand(command));
 
       updateCommand('');
-    }, 500),
+    },
     [command],
   );
 
   const handleReset = useCallback(
-    debounce(() => {
+    () => {
       dispatch(reset());
 
       updateCommand('');
-    }, 500),
+    },
     [command],
   );
 
