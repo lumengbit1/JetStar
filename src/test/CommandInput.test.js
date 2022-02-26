@@ -3,7 +3,7 @@ import 'jest-styled-components';
 import '@testing-library/jest-dom';
 import { Provider } from 'react-redux';
 
-import { render, fireEvent, cleanup } from '@testing-library/react';
+import { render, fireEvent, cleanup, waitFor } from '@testing-library/react';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import configureMockStore from 'redux-mock-store'
@@ -55,7 +55,11 @@ describe('CommandInput Test Cases', () => {
     fireEvent.change(input, {target: {value: 'PLACE,0,0,NORTH'}});
     fireEvent.click(run);
 
-    expect(realStore.getState().reducer.commands).toEqual(["PLACE (0, 0, 'NORTH')"]);
+    waitFor(() => {
+      expect(realStore.getState().reducer.commands).toEqual(["PLACE (0, 0, 'NORTH')"]);
+    }, 500)
+
+    // expect(realStore.getState().reducer.commands).toEqual(["PLACE (0, 0, 'NORTH')"]);
   });
 
   it('4: state shoule be cleaned when has reset button is clicked', async () => {

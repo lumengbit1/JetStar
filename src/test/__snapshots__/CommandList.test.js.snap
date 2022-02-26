@@ -22,28 +22,25 @@ exports[`CommandList Test Cases 1: Component shoule be rendered correctly 1`] = 
 
 <div>
   <div
+    aria-label="command-list"
     class="c0"
   >
     <div
-      aria-label="command-list"
       class="c1"
     >
       M
     </div>
     <div
-      aria-label="command-list"
       class="c1"
     >
       O
     </div>
     <div
-      aria-label="command-list"
       class="c1"
     >
       V
     </div>
     <div
-      aria-label="command-list"
       class="c1"
     >
       E

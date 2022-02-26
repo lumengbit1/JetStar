@@ -19,10 +19,12 @@ describe('Correct commands', () => {
     .type('PLACE,0,0,NORTH')
     .get(`[aria-label="run-button"]`)
     .click()
+    .wait(500)
     .get('input')
     .type('MOVE')
     .get(`[aria-label="run-button"]`)
     .click()
+    .wait(500)
     .get(`[aria-label="command-list"]`)
     .should(($ele)=>{
       expect($ele).to.contain('MOVE');
@@ -34,10 +36,12 @@ describe('Correct commands', () => {
     .type('PLACE,0,0,NORTH')
     .get(`[aria-label="run-button"]`)
     .click()
+    .wait(500)
     .get('input')
     .type('LEFT')
     .get(`[aria-label="run-button"]`)
     .click()
+    .wait(500)
     .get(`[aria-label="command-list"]`)
     .should(($ele)=>{
       expect($ele).to.contain('LEFT');
@@ -49,10 +53,12 @@ describe('Correct commands', () => {
     .type('PLACE,0,0,NORTH')
     .get(`[aria-label="run-button"]`)
     .click()
+    .wait(500)
     .get('input')
     .type('RIGHT')
     .get(`[aria-label="run-button"]`)
     .click()
+    .wait(500)
     .get(`[aria-label="command-list"]`)
     .should(($ele)=>{
       expect($ele).to.contain('RIGHT');
@@ -64,10 +70,12 @@ describe('Correct commands', () => {
     .type('PLACE,0,0,NORTH')
     .get(`[aria-label="run-button"]`)
     .click()
+    .wait(500)
     .get('input')
     .type('REPORT')
     .get(`[aria-label="run-button"]`)
     .click()
+    .wait(500)
     .get(`[aria-label="command-list"]`)
     .should(($ele)=>{
       expect($ele).to.contain('REPORT( ) => OUTPUT: 0, 0, NORTH');
@@ -79,6 +87,7 @@ describe('Correct commands', () => {
     .type('PLACE,0,0,NORTH')
     .get(`[aria-label="run-button"]`)
     .click()
+    .wait(500)
     .get('input')
     .should('have.value', '');
   });
@@ -88,6 +97,7 @@ describe('Correct commands', () => {
     .type('PLACE,0,0,NORTH')
     .get(`[aria-label="reset-button"]`)
     .click()
+    .wait(500)
     .get('input')
     .should('have.value', '')
     .get(`[aria-label="command-list"]`)
@@ -105,6 +115,7 @@ describe('Wrond command error message', () => {
     .type('PLACE,0,0')
     .get(`[aria-label="run-button"]`)
     .click()
+    .wait(500)
     .get(`[aria-label="error-list"]`)
     .should(($ele)=>{
       expect($ele).to.contain('Invalid PLACE command. The valid PLACE command should be \'PLACE X,Y,F\'.');
@@ -116,6 +127,7 @@ describe('Wrond command error message', () => {
     .type('PLACE,0,0,TEST')
     .get(`[aria-label="run-button"]`)
     .click()
+    .wait(500)
     .get(`[aria-label="error-list"]`)
     .should(($ele)=>{
       expect($ele).to.contain('Invalid facing direction value. Available directions should be NORTH | EAST | SOUTH | WEST.');
@@ -127,6 +139,7 @@ describe('Wrond command error message', () => {
     .type('MOVE')
     .get(`[aria-label="run-button"]`)
     .click()
+    .wait(500)
     .get(`[aria-label="error-list"]`)
     .should(($ele)=>{
       expect($ele).to.contain('The robot is not placed on the table yet. Place it first with \'PLACE X,Y,F\'');
@@ -138,6 +151,7 @@ describe('Wrond command error message', () => {
     .type('TEST')
     .get(`[aria-label="run-button"]`)
     .click()
+    .wait(500)
     .get(`[aria-label="error-list"]`)
     .should(($ele)=>{
       expect($ele).to.contain('Invalid command. Please pick commands from PLACE | MOVE | LEFT | RIGHT | REPORT.');
@@ -149,6 +163,7 @@ describe('Wrond command error message', () => {
     .type('PLACE,-1,0,NORTH')
     .get(`[aria-label="run-button"]`)
     .click()
+    .wait(500)
     .get(`[aria-label="error-list"]`)
     .should(($ele)=>{
       expect($ele).to.contain('Invalid coordinate value. It must be non-negative interger.');
@@ -160,10 +175,12 @@ describe('Wrond command error message', () => {
     .type('PLACE,4,4,NORTH')
     .get(`[aria-label="run-button"]`)
     .click()
+    .wait(500)
     .get('input')
     .type('MOVE')
     .get(`[aria-label="run-button"]`)
     .click()
+    .wait(500)
     .get(`[aria-label="error-list"]`)
     .should(($ele)=>{
       expect($ele).to.contain('The robot can\'t move forward on that direction, it may fall off the table.');
@@ -175,6 +192,7 @@ describe('Wrond command error message', () => {
     .type('PLACE,5,4,NORTH')
     .get(`[aria-label="run-button"]`)
     .click()
+    .wait(500)
     .get(`[aria-label="error-list"]`)
     .should(($ele)=>{
       expect($ele).to.contain('The robot fall off from the table.');
@@ -186,12 +204,14 @@ describe('Wrond command error message', () => {
     .type('PLACE,5,4,NORTH')
     .get(`[aria-label="run-button"]`)
     .click()
+    .wait(500)
     .get(`[aria-label="error-list"]`)
     .should(($ele)=>{
       expect($ele).to.contain('The robot fall off from the table.');
     })
     .get(`[aria-label="reset-button"]`)
     .click()
+    .wait(500)
     .get(`[aria-label="error-list"]`)
     .should('not.exist');
   });

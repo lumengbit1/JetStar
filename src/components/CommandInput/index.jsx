@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { useImmer } from 'use-immer';
+import { debounce } from 'lodash';
 import { reset, handleCommand, clearErrorMessage } from '../../reducers/actions';
 import { Root, Input, ButtonContainer, Button } from './CommandInput.style';
 
@@ -9,15 +10,11 @@ const CommandInput = () => {
   const dispatch = useDispatch();
 
   const onChange = useCallback((e) => {
-    e.preventDefault();
-
     updateCommand(e.target.value.toUpperCase());
   }, []);
 
   const handleSubmit = useCallback(
-    (e) => {
-      e.preventDefault();
-
+    debounce(() => {
       if (command.length === 0) return;
 
       dispatch(clearErrorMessage());
@@ -25,18 +22,16 @@ const CommandInput = () => {
       dispatch(handleCommand(command));
 
       updateCommand('');
-    },
+    }, 500),
     [command],
   );
 
   const handleReset = useCallback(
-    (e) => {
-      e.preventDefault();
-
+    debounce(() => {
       dispatch(reset());
 
       updateCommand('');
-    },
+    }, 500),
     [command],
   );
 
