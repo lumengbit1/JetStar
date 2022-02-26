@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
-import _ from 'lodash';
+import { assign } from 'lodash';
 import {
   MainBodyContainer,
   Root,
@@ -20,7 +20,7 @@ const MainRouter = ({ component: Component, ...rest }) => {
     </Root>
   );
 
-  _.assign(cloned_props, { component: _component });
+  assign(cloned_props, { component: _component });
 
   return (
     <Route
