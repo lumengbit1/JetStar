@@ -10,7 +10,7 @@ const CommandInput = () => {
 
   const onChange = useCallback((e) => {
     updateCommand(e.target.value.toUpperCase());
-  }, []);
+  }, [updateCommand]);
 
   const handleSubmit = useCallback(
     () => {
@@ -22,7 +22,7 @@ const CommandInput = () => {
 
       updateCommand('');
     },
-    [command],
+    [command, clearErrorMessage, handleCommand, updateCommand],
   );
 
   const handleReset = useCallback(
@@ -31,7 +31,7 @@ const CommandInput = () => {
 
       updateCommand('');
     },
-    [command],
+    [command, reset, updateCommand],
   );
 
   return (

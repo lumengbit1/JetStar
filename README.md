@@ -32,6 +32,12 @@ npm run lint
 npm test
 ```
 
+#### Run Cypress
+
+```
+npm run cypress:open
+```
+
 #### Create production build
 
 ```
