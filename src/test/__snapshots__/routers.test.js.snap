@@ -18,12 +18,14 @@ exports[`Route Test Route Test 1`] = `
       className="sc-dlfnuX eMPCqK"
     >
       <button
+        aria-label="run-button"
         className="sc-hKgJUU gEBMvM"
         onClick={[Function]}
       >
         Run
       </button>
       <button
+        aria-label="reset-button"
         className="sc-hKgJUU gEBMvM"
         onClick={[Function]}
       >

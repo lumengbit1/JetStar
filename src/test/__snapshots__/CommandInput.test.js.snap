@@ -57,11 +57,13 @@ exports[`CommandInput Test Cases 1: Component shoule be rendered correctly 1`] =
       class="c2"
     >
       <button
+        aria-label="run-button"
         class="c3"
       >
         Run
       </button>
       <button
+        aria-label="reset-button"
         class="c3"
       >
         Reset
