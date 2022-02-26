@@ -8,7 +8,7 @@ const ErrorMessage = () => {
   if (errorMessage.length === 0) return null;
 
   return (
-    <Command>
+    <Command aria-label="error-list">
       {errorMessage}
     </Command>
   );

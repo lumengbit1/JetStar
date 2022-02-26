@@ -30,6 +30,6 @@ export const ERRORS = {
   invalidInitialCommand: 'Invalid PLACE command. The valid PLACE command should be \'PLACE X,Y,F\'.',
   wrongCoordinate: 'Invalid coordinate value. It must be non-negative interger.',
   wrongDirection: `Invalid facing direction value. Available directions should be ${FACING_DIRECTIONS.join(' | ')}.`,
-  fallOff: 'The robot fall off from the table',
+  fallOff: 'The robot fall off from the table.',
   wrongMovingDirection: 'The robot can\'t move forward on that direction, it may fall off the table.',
 };
