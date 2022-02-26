@@ -75,6 +75,7 @@ export const getErrorMessage = (inputedCommand, isPlaced, coordinate, facing) =>
 
         const nextY = coordinate.y + facing.y;
 
+        // Error for robot fall off from the table
         if (!isRobotOnTable(nextX, nextY)) {
           errors = ERRORS.wrongMovingDirection;
 
