@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import { VFlex } from '../../styles/mixins';
 
 export const Root = styled.div`
-  display: flex;
-  flex-direction: column;
+  ${VFlex};
+  
   align-items: center;
   padding: 3.125rem;
   width: 100%;

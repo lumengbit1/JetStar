@@ -9,11 +9,11 @@ exports[`CommandList Test Cases 1: Component shoule be rendered correctly 1`] = 
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  background-color: black;
   width: 32rem;
   height: 32rem;
   padding: 1rem;
   overflow: auto;
+  background-color: black;
 }
 
 .c1 {
