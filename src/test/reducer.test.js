@@ -17,7 +17,7 @@ describe('Test reducer', () => {
     };
 
     expect(
-      reducer({reducer: initialState}, {
+      reducer({ reducer: initialState }, {
         type: Action.ADD_COMMAND,
         payload,
       }).reducer,
@@ -39,7 +39,7 @@ describe('Test reducer', () => {
     };
 
     expect(
-      reducer({reducer: initialState}, {
+      reducer({ reducer: initialState }, {
         type: Action.ADD_COMMAND,
         payload,
       }).reducer,
@@ -70,7 +70,7 @@ describe('Test reducer', () => {
     };
 
     expect(
-      reducer({reducer: initialState}, {
+      reducer({ reducer: initialState }, {
         type: Action.RESET,
         payload,
       }).reducer,
@@ -92,7 +92,7 @@ describe('Test reducer', () => {
     };
 
     expect(
-      reducer({reducer: initialState}, {
+      reducer({ reducer: initialState }, {
         type: Action.ADD_ERROR,
         payload,
       }).reducer,
@@ -119,7 +119,7 @@ describe('Test reducer', () => {
     };
 
     expect(
-      reducer({reducer: initialState}, {
+      reducer({ reducer: initialState }, {
         type: Action.CLEAR_ERROR_MESSAGE,
       }).reducer,
     ).toEqual(expectedState);
@@ -149,7 +149,7 @@ describe('Test reducer', () => {
     };
 
     expect(
-      reducer({reducer: initialState}, {
+      reducer({ reducer: initialState }, {
         type: Action.ADD_COMMAND,
         payload,
       }).reducer,
@@ -180,7 +180,7 @@ describe('Test reducer', () => {
     };
 
     expect(
-      reducer({reducer: initialState}, {
+      reducer({ reducer: initialState }, {
         type: Action.ADD_COMMAND,
         payload,
       }).reducer,
@@ -211,7 +211,7 @@ describe('Test reducer', () => {
     };
 
     expect(
-      reducer({reducer: initialState}, {
+      reducer({ reducer: initialState }, {
         type: Action.ADD_COMMAND,
         payload,
       }).reducer,
@@ -242,7 +242,7 @@ describe('Test reducer', () => {
     };
 
     expect(
-      reducer({reducer: initialState}, {
+      reducer({ reducer: initialState }, {
         type: Action.ADD_COMMAND,
         payload,
       }).reducer,
@@ -264,7 +264,7 @@ describe('Test reducer', () => {
     };
 
     expect(
-      reducer({reducer: initialState}, {
+      reducer({ reducer: initialState }, {
         type: Action.ADD_COMMAND,
         payload,
       }).reducer,
@@ -286,7 +286,7 @@ describe('Test reducer', () => {
     };
 
     expect(
-      reducer({reducer: initialState}, {
+      reducer({ reducer: initialState }, {
         type: Action.ADD_COMMAND,
         payload,
       }).reducer,
@@ -308,7 +308,7 @@ describe('Test reducer', () => {
     };
 
     expect(
-      reducer({reducer: initialState}, {
+      reducer({ reducer: initialState }, {
         type: Action.ADD_COMMAND,
         payload,
       }).reducer,
@@ -330,7 +330,7 @@ describe('Test reducer', () => {
     };
 
     expect(
-      reducer({reducer: initialState}, {
+      reducer({ reducer: initialState }, {
         type: Action.ADD_COMMAND,
         payload,
       }).reducer,
@@ -361,7 +361,7 @@ describe('Test reducer', () => {
     };
 
     expect(
-      reducer({reducer: initialState}, {
+      reducer({ reducer: initialState }, {
         type: Action.ADD_COMMAND,
         payload,
       }).reducer,
@@ -392,7 +392,7 @@ describe('Test reducer', () => {
     };
 
     expect(
-      reducer({reducer: initialState}, {
+      reducer({ reducer: initialState }, {
         type: Action.ADD_COMMAND,
         payload,
       }).reducer,

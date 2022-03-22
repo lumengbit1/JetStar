@@ -1,23 +1,11 @@
-import { handleActions } from 'redux-actions';
-import { produce } from 'immer';
-import { add_command, reset, showError, clearErrorMessage } from './actions';
-import { CommandTypes } from './constants';
+import { CommandTypes, Action } from './constants';
 import { getCommandValues, getFacingDirection } from './util';
 import { ORIENTATION, INITIAL_ROTATE_DEG } from '../configs/configs';
 
-const initialState = {
-  isPlaced: false,
-  coordinate: null,
-  facing: { x: 0, y: 1 },
-  rotateDeg: 0,
-  commands: [],
-  errorMessage: '',
-};
-
-const reducer = handleActions(
-  {
-    [add_command]: (state, action) => produce(state, (draft) => {
-      const commandValues = getCommandValues(action.payload.command);
+const reducer = (draft, action) => {
+  switch (action.type) {
+    case Action.ADD_COMMAND: {
+      const commandValues = getCommandValues(action.command);
 
       const command = commandValues[0];
 
@@ -33,76 +21,90 @@ const reducer = handleActions(
           draft.coordinate = { x, y };
           draft.rotateDeg = INITIAL_ROTATE_DEG[f];
           draft.isPlaced = true;
-          draft.commands = [...state.commands, `${CommandTypes.PLACE} (${x}, ${y}, '${f}')`];
-          return draft;
+          draft.commands = [...draft.commands, `${CommandTypes.PLACE} (${x}, ${y}, '${f}')`];
+
+          break;
         }
 
         case CommandTypes.MOVE: {
-          if (!state.isPlaced || state.coordinate === null) return state;
+          if (!draft.isPlaced || draft.coordinate === null) return draft;
 
           draft.coordinate = {
-            x: state.coordinate.x + state.facing.x,
-            y: state.coordinate.y + state.facing.y,
+            x: draft.coordinate.x + draft.facing.x,
+            y: draft.coordinate.y + draft.facing.y,
           };
-          draft.commands = [...state.commands, `${CommandTypes.MOVE}( )`];
-          return draft;
+          draft.commands = [...draft.commands, `${CommandTypes.MOVE}( )`];
+
+          break;
         }
 
         case CommandTypes.LEFT: {
-          if (!state.isPlaced) return state;
+          if (!draft.isPlaced) return draft;
 
           draft.facing = {
-            x: state.facing.y !== 0 ? -state.facing.y : 0,
-            y: state.facing.x,
+            x: draft.facing.y !== 0 ? -draft.facing.y : 0,
+            y: draft.facing.x,
           };
-          draft.rotateDeg = state.rotateDeg - 90;
-          draft.commands = [...state.commands, `${CommandTypes.LEFT}( )`];
-          return draft;
+          draft.rotateDeg -= 90;
+          draft.commands = [...draft.commands, `${CommandTypes.LEFT}( )`];
+
+          break;
         }
 
         case CommandTypes.RIGHT: {
-          if (!state.isPlaced) return state;
+          if (!draft.isPlaced) return draft;
 
           draft.facing = {
-            x: state.facing.y,
-            y: state.facing.x !== 0 ? -state.facing.x : 0,
+            x: draft.facing.y,
+            y: draft.facing.x !== 0 ? -draft.facing.x : 0,
           };
-          draft.rotateDeg = state.rotateDeg + 90;
-          draft.commands = [...state.commands, `${CommandTypes.RIGHT}( )`];
-          return draft;
+          draft.rotateDeg += 90;
+          draft.commands = [...draft.commands, `${CommandTypes.RIGHT}( )`];
+
+          break;
         }
 
         case CommandTypes.REPORT: {
-          if (!state.isPlaced || state.coordinate === null) return state;
+          if (!draft.isPlaced || draft.coordinate === null) return draft;
 
-          const facingDirection = getFacingDirection(state.facing);
+          const facingDirection = getFacingDirection(draft.facing);
 
           draft.commands = [
-            ...state.commands,
-            `REPORT( ) => OUTPUT: ${state.coordinate.x}, ${state.coordinate.y}, ${facingDirection}`,
+            ...draft.commands,
+            `REPORT( ) => OUTPUT: ${draft.coordinate.x}, ${draft.coordinate.y}, ${facingDirection}`,
           ];
-          return draft;
+
+          break;
         }
 
         default: {
-          return state;
+          return draft;
         }
       }
-    }),
+    }
 
-    [reset]: (state) => produce(state, () => initialState),
-
-    [showError]: (state, action) => produce(state, (draft) => {
-      draft.errorMessage = action.payload.message;
-      return draft;
-    }),
-
-    [clearErrorMessage]: (state) => produce(state, (draft) => {
+    case Action.CLEAR_ERROR_MESSAGE: {
       draft.errorMessage = '';
+
+      break;
+    }
+
+    case Action.RESET: {
+      draft = initialState;
+
+      break;
+    }
+
+    case Action.ADD_ERROR: {
+      draft.errorMessage = action.message;
+
+      break;
+    }
+
+    default: {
       return draft;
-    }),
-  },
-  initialState,
-);
+    }
+  }
+};
 
 export default reducer;

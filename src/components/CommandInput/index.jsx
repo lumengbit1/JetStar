@@ -1,37 +1,48 @@
 import React, { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
 import { useImmer } from 'use-immer';
-import { reset, handleCommand, clearErrorMessage } from '../../reducers/actions';
 import { Root, Input, ButtonContainer, Button } from './CommandInput.style';
+import { Action } from '../../reducers/constants';
+import { getErrorMessage } from '../../reducers/util';
 
-const CommandInput = () => {
+const CommandInput = (props) => {
   const [command, updateCommand] = useImmer('');
-  const dispatch = useDispatch();
-
+  const { state, dispatch } = props;
   const onChange = useCallback((e) => {
     updateCommand(e.target.value.toUpperCase());
   }, [updateCommand]);
+
+  const handleCommand = (command) => {
+    const { isPlaced, coordinate, facing } = state;
+
+    const Error = getErrorMessage(command, isPlaced, coordinate, facing);
+
+    if (Error.length) {
+      dispatch({ type: Action.ADD_ERROR, message: Error });
+
+      return;
+    }
+
+    dispatch({ type: Action.ADD_COMMAND, command });
+  };
 
   const handleSubmit = useCallback(
     () => {
       if (command.length === 0) return;
 
-      dispatch(clearErrorMessage());
+      dispatch({ type: Action.CLEAR_ERROR_MESSAGE });
 
-      dispatch(handleCommand(command));
+      handleCommand(command);
 
       updateCommand('');
     },
-    [command, clearErrorMessage, handleCommand, updateCommand],
+    [command],
   );
 
   const handleReset = useCallback(
     () => {
-      dispatch(reset());
-
       updateCommand('');
     },
-    [command, reset, updateCommand],
+    [command, updateCommand],
   );
 
   return (

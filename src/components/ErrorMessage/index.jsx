@@ -1,9 +1,9 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Command } from './ErrorMessage.style';
 
-const ErrorMessage = () => {
-  const errorMessage = useSelector((state) => state.reducer.errorMessage);
+const ErrorMessage = (props) => {
+  const { state } = props;
+  const { errorMessage } = state;
 
   if (errorMessage.length === 0) return null;
 

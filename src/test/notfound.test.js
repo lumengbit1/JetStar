@@ -7,7 +7,7 @@ import AppNotFound from '../components/notfound';
 describe('AppNotFound Test Cases', () => {
   it('1: Component shoule be rendered correctly', async () => {
     const { container } = render(
-      <AppNotFound />
+      <AppNotFound />,
     );
 
     expect(container).toMatchSnapshot();

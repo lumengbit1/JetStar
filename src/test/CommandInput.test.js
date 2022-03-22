@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { render, fireEvent, cleanup, waitFor } from '@testing-library/react';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
-import configureMockStore from 'redux-mock-store'
+import configureMockStore from 'redux-mock-store';
 import reducer from '../reducers';
 import CommandInput from '../components/CommandInput';
 
@@ -38,7 +38,7 @@ describe('CommandInput Test Cases', () => {
 
     const input = getByLabelText('command-input');
 
-    fireEvent.change(input, {target: {value: 'MOVE'}});
+    fireEvent.change(input, { target: { value: 'MOVE' } });
     expect(input.value).toBe('MOVE');
   });
 
@@ -52,7 +52,7 @@ describe('CommandInput Test Cases', () => {
     const input = getByLabelText('command-input');
     const run = getByLabelText('run-button');
 
-    fireEvent.change(input, {target: {value: 'PLACE,0,0,NORTH'}});
+    fireEvent.change(input, { target: { value: 'PLACE,0,0,NORTH' } });
     fireEvent.click(run);
 
     expect(realStore.getState().reducer.commands).toEqual(["PLACE (0, 0, 'NORTH')"]);
@@ -69,7 +69,7 @@ describe('CommandInput Test Cases', () => {
     const run = getByLabelText('run-button');
     const reset = getByLabelText('reset-button');
 
-    fireEvent.change(input, {target: {value: 'PLACE,0,0,NORTH'}});
+    fireEvent.change(input, { target: { value: 'PLACE,0,0,NORTH' } });
     fireEvent.click(run);
     fireEvent.click(reset);
 

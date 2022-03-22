@@ -1,10 +1,10 @@
-import { 
-  getCommandValues, 
-  getFacingDirection, 
-  isValidCoordinate, 
+import {
+  getCommandValues,
+  getFacingDirection,
+  isValidCoordinate,
   isRobotOnTable,
   getErrorMessage,
- } from '../reducers/util';
+} from '../reducers/util';
 import { ERRORS } from '../configs/configs';
 
 describe('Test util functions', () => {
@@ -16,7 +16,7 @@ describe('Test util functions', () => {
   });
 
   it('2.should handle getFacingDirection', () => {
-    const input = {x: 0, y: 1};
+    const input = { x: 0, y: 1 };
     const output = 'NORTH';
 
     expect(getFacingDirection(input)).toEqual(output);
@@ -82,8 +82,8 @@ describe('Test util functions', () => {
   it('11.should handle getErrorMessage with wrongMovingDirection', () => {
     const inputedCommand = 'MOVE';
     const isPlaced = true;
-    const coordinate = {x: 4, y: 4};
-    const facing ={x: 0, y: 1};
+    const coordinate = { x: 4, y: 4 };
+    const facing = { x: 0, y: 1 };
     const output = ERRORS.wrongMovingDirection;
 
     expect(getErrorMessage(inputedCommand, isPlaced, coordinate, facing)).toEqual(output);
@@ -92,8 +92,8 @@ describe('Test util functions', () => {
   it('12.should handle getErrorMessage without error', () => {
     const inputedCommand = 'PLACE,0,0,NORTH';
     const isPlaced = true;
-    const coordinate = {x: 0, y: 0};
-    const facing ={x: 0, y: 1};
+    const coordinate = { x: 0, y: 0 };
+    const facing = { x: 0, y: 1 };
     const output = '';
 
     expect(getErrorMessage(inputedCommand, isPlaced, coordinate, facing)).toEqual(output);
@@ -103,7 +103,7 @@ describe('Test util functions', () => {
     const inputedCommand = 'MOVE';
     const isPlaced = true;
     const coordinate = null;
-    const facing ={x: 0, y: 1};
+    const facing = { x: 0, y: 1 };
     const output = '';
 
     expect(getErrorMessage(inputedCommand, isPlaced, coordinate, facing)).toEqual(output);
@@ -112,8 +112,8 @@ describe('Test util functions', () => {
   it('13.should handle getErrorMessage with MOVE command and will not fall off from table', () => {
     const inputedCommand = 'MOVE';
     const isPlaced = true;
-    const coordinate = {x: 2, y: 2};
-    const facing ={x: 0, y: 1};
+    const coordinate = { x: 2, y: 2 };
+    const facing = { x: 0, y: 1 };
     const output = '';
 
     expect(getErrorMessage(inputedCommand, isPlaced, coordinate, facing)).toEqual(output);
