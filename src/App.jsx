@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext } from 'react';
 import PropTypes from 'prop-types';
 import { useImmerReducer } from 'use-immer';
 import reducer from './reducers/reducer';
