@@ -1,6 +1,7 @@
 import { CommandTypes, Action } from './constants';
 import { getCommandValues, getFacingDirection } from './util';
 import { ORIENTATION, INITIAL_ROTATE_DEG } from '../configs/configs';
+import { initialState } from '../App';
 
 const reducer = (draft, action) => {
   switch (action.type) {
@@ -23,6 +24,7 @@ const reducer = (draft, action) => {
           draft.isPlaced = true;
           draft.commands = [...draft.commands, `${CommandTypes.PLACE} (${x}, ${y}, '${f}')`];
 
+          return draft;
           break;
         }
 
@@ -35,6 +37,7 @@ const reducer = (draft, action) => {
           };
           draft.commands = [...draft.commands, `${CommandTypes.MOVE}( )`];
 
+          return draft;
           break;
         }
 
@@ -48,6 +51,7 @@ const reducer = (draft, action) => {
           draft.rotateDeg -= 90;
           draft.commands = [...draft.commands, `${CommandTypes.LEFT}( )`];
 
+          return draft;
           break;
         }
 
@@ -61,6 +65,7 @@ const reducer = (draft, action) => {
           draft.rotateDeg += 90;
           draft.commands = [...draft.commands, `${CommandTypes.RIGHT}( )`];
 
+          return draft;
           break;
         }
 
@@ -74,6 +79,7 @@ const reducer = (draft, action) => {
             `REPORT( ) => OUTPUT: ${draft.coordinate.x}, ${draft.coordinate.y}, ${facingDirection}`,
           ];
 
+          return draft;
           break;
         }
 
@@ -86,18 +92,21 @@ const reducer = (draft, action) => {
     case Action.CLEAR_ERROR_MESSAGE: {
       draft.errorMessage = '';
 
+      return draft;
       break;
     }
 
     case Action.RESET: {
       draft = initialState;
 
+      return draft;
       break;
     }
 
     case Action.ADD_ERROR: {
       draft.errorMessage = action.message;
 
+      return draft;
       break;
     }
 

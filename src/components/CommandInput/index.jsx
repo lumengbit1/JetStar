@@ -22,7 +22,7 @@ const CommandInput = (props) => {
       return;
     }
 
-    dispatch({ type: Action.ADD_COMMAND, command });
+    dispatch({ type: Action.ADD_COMMAND, command: command });
   };
 
   const handleSubmit = useCallback(
@@ -40,6 +40,8 @@ const CommandInput = (props) => {
 
   const handleReset = useCallback(
     () => {
+      dispatch({ type: Action.RESET });
+
       updateCommand('');
     },
     [command, updateCommand],

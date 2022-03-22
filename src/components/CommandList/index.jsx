@@ -5,7 +5,7 @@ import { Root, Command } from './CommandList.style';
 const CommandList = (props) => {
   const { state } = props;
   const { commands } = state;
-
+  console.log(state)
   if (commands.length === 0) return null;
 
   return (
