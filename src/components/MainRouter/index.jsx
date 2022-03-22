@@ -1,36 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Route } from 'react-router-dom';
+import { Route, Outlet } from 'react-router-dom';
+import HomePage from '../Home';
 import { assign } from 'lodash';
 import {
   MainBodyContainer,
   Root,
 } from './MainRouter.styles';
 
-const MainRouter = ({ component: Component, ...rest }) => {
-  const cloned_props = { ...rest };
-
-  const _component = () => (
+const MainRouter = () => {
+  return (
     <Root>
       <MainBodyContainer>
-        <Component
-          {...cloned_props}
-        />
+        <div>Header</div>
+        <Outlet />
       </MainBodyContainer>
     </Root>
-  );
-
-  assign(cloned_props, { component: _component });
-
-  return (
-    <Route
-      {...rest}
-      render={() => (
-        <Component
-          {...cloned_props}
-        />
-      )}
-    />
   );
 };
 

@@ -9,7 +9,6 @@ export const Root = styled.div`
 `;
 
 export const MainBodyContainer = styled.div`
-  display: flex;
   width: 100%;
   position: relative;
 `;
